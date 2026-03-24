@@ -15,9 +15,11 @@ channel <- dbConnect(odbc(),
                                             service = "DVPROD"))
 
 
-useShinyjs()
 
-ui <- source("ui.R")
+
+
+
+ui <- source("ui.R")$value
 
 
 ##### more soon

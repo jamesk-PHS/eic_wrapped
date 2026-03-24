@@ -1,3 +1,5 @@
+HB_Server <- function(input, output, session){
+  
   board_selected <- reactive({if(input$board != "Please select"){TRUE}else{FALSE}})
   
   output$team_difference <- renderUI({
@@ -32,3 +34,5 @@
     return(text)
   })
   
+  
+}

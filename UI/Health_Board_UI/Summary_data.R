@@ -45,6 +45,8 @@ GROUP BY health_board_code
   mutate(difference = after_count - before_count,
          prop_change = (1-(after_count/before_count))*100)
 
+dbDisconnect(channel)
+
 
 # Dataset 3 ---------------------------------------------------------------
 
