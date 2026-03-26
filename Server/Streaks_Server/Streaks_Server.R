@@ -24,7 +24,8 @@ Streaks_Server <- function(input, output, session) {
           ungroup() |> 
           distinct(sub_location_code, sub_location_name) |> 
           ggplot(aes(label = sub_location_name)) + 
-          ggwordcloud::geom_text_wordcloud()
+          ggwordcloud::geom_text_wordcloud() +
+          phsstyles::theme_phs()
         
       })
       

@@ -43,8 +43,11 @@ HB_Hours_Server <- function(input, output, session) {
         data <- WTE_data()
         
         data |> 
-          ggplot(aes(measure_date, hours)) + 
-          geom_line()
+          ggplot(aes(measure_date, hours, colour = input$board)) + 
+          geom_point() +
+          geom_line() +
+          scale_y_continuous(labels = scales::label_comma()) +
+          phsstyles::theme_phs()
         
       })
       

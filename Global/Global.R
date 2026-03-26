@@ -1,10 +1,14 @@
 
 library(tidyverse)
+
 library(shiny)
 library(bslib)
-library(eicmethods)
 library(odbc)
 library(shinyjs)
+
+library(eicmethods)
+library(phsstyles)
+library(scales)
 
 
 
