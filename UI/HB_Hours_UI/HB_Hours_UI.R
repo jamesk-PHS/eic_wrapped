@@ -14,19 +14,19 @@ HB_Hours <- page_sidebar(
                    value_box(
                      title = "Total WTE",
                      value = textOutput("total_WTE"),
-                     theme = "purple",
+                     theme = phsstyles::phs_colors()[1],
                      p("The total baseline hours your team worked")
                    ),
                    value_box(
                      title = "Total B&A",
                      value = textOutput("total_SSUBA"),
-                     theme = "purple",
+                     theme = phsstyles::phs_colors()[2],
                      p("The total bank and agency hours your team had")
                    ),
                    value_box(
                      title = "Total E&O",
                      value = textOutput("total_SSUEO"),
-                     theme = "purple",
+                     theme = phsstyles::phs_colors()[4],
                      p("The total excess and overtime hours your team worked")
                    )
     ),

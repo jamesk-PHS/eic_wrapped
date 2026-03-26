@@ -6,6 +6,7 @@ Summary <- page_sidebar(
   card(
     full_screen = TRUE,
     card_header("Your year in EiC"),
-    uiOutput("team_difference"),
-    uiOutput("measure_difference"))
+    layout_columns(max_height = "250px",
+                   uiOutput("team_difference"),
+                   uiOutput("measure_difference")))
 )

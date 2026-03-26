@@ -9,6 +9,7 @@ library(shinyjs)
 library(eicmethods)
 library(phsstyles)
 library(scales)
+library(bsicons)
 
 
 

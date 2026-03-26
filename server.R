@@ -1,4 +1,4 @@
-source("Server/Health_Board_Server/Summary_Server.R")
+source("Server/Summary_Server/Summary_Server.R")
 source("Server/Streaks_Server/Streaks_Server.R")
 source("Server/HB_Hours_Server/HB_Hours_Server.R")
 

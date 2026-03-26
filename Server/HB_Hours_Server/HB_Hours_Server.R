@@ -20,19 +20,32 @@ HB_Hours_Server <- function(input, output, session) {
       summarise(hours = sum(hours, na.rm = T), .groups = "drop")
   })
   
-  output$total_WTE <- renderText({
+  output$Total_WTE <- renderUI({
     
     if(board_selected()){
+      
       data <- WTE_data()
-      text <- sum(data$hours, na.rm = T)
-      text <- round(text, 1)
-      text <- as.character(text)
+      text_to_show <- sum(data$hours, na.rm = T)
+      text_to_show <- round(text_to_show, 1)
+        
+        box <- value_box(
+          title = "Total WTE",
+          showcase = bs_icon("person-arms-up"),
+          value = text_to_show,
+          theme = value_box_theme(bg = "#C73918"), # PHS Rust
+          p("The total baseline hours your team worked")
+        )
     } else{
-      text <- "Choose your HB"
+      box <- value_box(
+        showcase = bs_icon("person-arms-up"),
+        value = "Select your health board",
+        theme = value_box_theme(bg = "#C73918"), # PHS Rust
+        p("and learn about WTE staffing in your health board!")
+      )
     }
-    return(text)
-    
+    return(box)
   })
+  
   
   output$WTE_hours <- renderUI({
     
@@ -43,7 +56,7 @@ HB_Hours_Server <- function(input, output, session) {
         data <- WTE_data()
         
         data |> 
-          ggplot(aes(measure_date, hours, colour = input$board)) + 
+          ggplot(aes(measure_date, hours), colour = input$board, group = input$board) + 
           geom_point() +
           geom_line() +
           scale_y_continuous(labels = scales::label_comma()) +
@@ -74,18 +87,31 @@ HB_Hours_Server <- function(input, output, session) {
                 total_ba = nonregistered_ba + registered_ba)
   })
   
-  output$total_SSUBA <- renderText({
+  output$Total_BA <- renderUI({
     
     if(board_selected()){
+      
       data <- SSUBA_data()
-      text <- sum(data$total_ba, na.rm = T)
-      text <- round(text, 1)
-      text <- as.character(text)
+      text_to_show <- sum(data$hours, na.rm = T)
+      text_to_show <- round(text_to_show, 1)
+      
+      box <- value_box(
+        title = "Total B&A",
+        showcase = bs_icon("hourglass"),
+        value = text_to_show,
+        theme = value_box_theme(bg = "#83BB26"), # PHS Green
+        p("The total bank and agency hours your team had")
+      )
     } else{
-      text <- "Choose your HB"
+      box <- value_box(
+        showcase = bs_icon("hourglass"),
+        value = "Select your health board",
+        theme = value_box_theme(bg = "#83BB26"), # PHS Green
+        p("and learn about teams in your health board!")
+      )
+        
     }
-    return(text)
-    
+    return(box)
   })
   
   
@@ -110,17 +136,33 @@ HB_Hours_Server <- function(input, output, session) {
       summarise(across(contains("registered"), sum)) |> 
       mutate(total_eo = sum(3:6))
   }) 
-  output$total_SSUEO <- renderText({
+  
+  output$Total_EO <- renderUI({
     
     if(board_selected()){
+      
       data <- SSUEO_data()
-      text <- sum(pull(data, hours), na.rm = T)
-      text <- round(text, 1)
-      text <- as.character(text)
+      text_to_show <- sum(data$hours, na.rm = T)
+      text_to_show <- round(text_to_show, 1)
+      
+      box <- value_box(
+        title = "Total E&O",
+        showcase = bs_icon("clipboard-heart"), 
+        value = text_to_show,
+        theme = value_box_theme(bg = "#9B4393"), # PHS Magenta 
+        p("The total bank and agency hours your team had")
+      )
+
     } else{
-      text <- "Choose your HB"
+      box <- value_box(
+        showcase = bs_icon("hourglass"),
+        value = "Select your health board",
+        theme = value_box_theme(bg = "#9B4393"), # PHS Magenta 
+        p("and learn about teams in your health board!")
+      )
+      
     }
-    return(text)
+    return(box)
   })
   
 }
