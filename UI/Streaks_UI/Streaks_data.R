@@ -7,7 +7,7 @@ tde_exract_expanded <- tde_extract |>
   mutate(measure_date_my = dmy(measure_date_my),
          across(9:11, ~str_remove_all(.x, ",")), # remove commas from numbers
          across(9:11, as.numeric)) |> 
-  left_join(eicmethods::return_referece_file("REFPOINT") |> #  Attach NRV data
+  left_join(eicmethods::return_reference_file("REFPOINT") |> #  Attach NRV data
               distinct(measureid, refpoint),
             by = c("measure_id" = "measureid")) |> 
   left_join(eicmethods::ref_points_guidance, # Attach NRV context
